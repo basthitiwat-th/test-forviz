@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>02-Venue-Booking-System</title>
+    <script type="module" src="script.js"></script>
+  </head>
+  <body>
+    <!-- <label for="">Room ID</label>
+    <input type="text" id="roomId" onchange="setRoomId()" />
+
+    <label for="">Start Time</label>
+    <input type="datetime-local" id="startTime" onchange="setStartTime()" />
+
+    <label for="">End Time</label>
+    <input type="datetime-local" id="endTime" onchange="setEndTime()" />
+
+    <button id="submit">submit</button> -->
+
+    <!-- New Form -->
+    <div class="form-container">
+      <h2>Check Availability room</h2>
+      <form id="myForm">
+        <div class="form-group">
+          <label for="roomId">Room Id</label>
+          <input
+            type="text"
+            id="roomId"
+            name="roomId"
+            placeholder="Ex. A101"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="startTime">Start Time</label>
+          <input
+            type="datetime-local"
+            id="startTime"
+            name="startTime"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="endTime">End Time</label>
+          <input type="datetime-local" id="endTime" name="endTime" required />
+        </div>
+
+        <button type="submit" class="btn">Submit</button>
+      </form>
+
+      <div class="output" id="output"></div>
+    </div>
+
+    <!-- เช็ครายสัปดาห์ -->
+    <div class="check-room">
+      <a href="current-bookings.html" class="btn-check-room">current bookings > </a>
+    </div>
+
+    <!-- <script>
+      let roomId = "";
+      let starttime = "";
+      let endtime = "";
+      let data = [];
+
+      async function loadData() {
+        try {
+          const response = await fetch("data.json");
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          data = await response.json();
+          /* console.log(data); */
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      }
+      // Call the function to load data
+      loadData();
+
+      const element = document.getElementById("submit");
+      element.addEventListener("click", () =>
+        checkAvailability(roomId, starttime, endtime)
+      );
+
+      /* Get value */
+      function setStartTime() {
+        starttime = document.getElementById("startTime").value;
+      }
+      function setEndTime() {
+        endtime = document.getElementById("endTime").value;
+      }
+      function setRoomId() {
+        roomId = document.getElementById("roomId").value;
+      }
+
+      function convertDateTime(input) {
+        // แปลงสตริงวันเวลาให้เป็นวัตถุ Date
+        const [datePart, timePart] = input.split(" ");
+        /* console.log(datePart); */
+
+        const [year, month, day] = datePart.split("-").map(Number);
+        const [hours, minutes, seconds] = timePart.split(":").map(Number);
+
+        const date = new Date(year, month - 1, day, hours, minutes, seconds);
+
+        // สร้างวันที่ใหม่ในรูปแบบ ISO 8601
+        const formattedDate = `${date.getFullYear()}-${String(
+          date.getMonth() + 1
+        ).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}T${String(
+          date.getHours()
+        ).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
+
+        return new Date(formattedDate);
+      }
+
+      function checkAvailability(roomId, starttime, endtime) {
+        /* console.log(roomId, starttime, endtime); */
+
+        const dataFilter = data.filter((item) => {
+          /* const dateFromString = new Date(item.startTime.replace(" ", "T")); */
+
+          const jsonStartTime = convertDateTime(item.startTime);
+          const jsonEndTime = convertDateTime(item.endTime);
+
+          const reqStartTime = new Date(starttime);
+          const reqEndTime = new Date(endtime);
+
+          /* return ((reqStartTime  <= jsonEndtime || reqStartTime  >= jsonStartime ) && (reqEndTime <= jsonEndtime )); */
+
+          return (item.roomId =
+            roomId &&
+            !(reqStartTime >= jsonEndTime || reqEndTime <= jsonStartTime));
+        });
+
+        if (dataFilter.length > 0) {
+          alert("ห้องเต็ม");
+        } else {
+          alert("ห้องว่าง");
+        }
+      }
+    </script> -->
+  </body>
+</html>
